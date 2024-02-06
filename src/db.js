@@ -25,7 +25,16 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const {} = sequelize.models;
+const {Articles,Categories,Orders,Users} = sequelize.models;
+
+Categories.hasMany(Articles);
+Articles.belongsTo(Categories);
+
+Users.hasMany(Orders);
+Orders.belongsTo(Users);
+
+Orders.hasMany(Articles);
+Articles.belongsTo(Orders);
 
 
 module.exports = {
