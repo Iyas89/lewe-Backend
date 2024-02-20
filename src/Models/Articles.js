@@ -19,15 +19,35 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT,
             allowNull: false
         },
+        stockXS: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        stockS: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        stockM: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        stockL: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        stockXL: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        stockXXL: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
         stock: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
         image: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        color: {
             type: DataTypes.STRING,
             allowNull: false
         },
