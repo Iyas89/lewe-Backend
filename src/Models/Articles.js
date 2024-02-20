@@ -53,7 +53,7 @@ module.exports = (sequelize) => {
         },
         size: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         sold: {
             type: DataTypes.INTEGER,
