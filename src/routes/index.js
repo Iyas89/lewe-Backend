@@ -3,6 +3,7 @@ const { Router } = require("express");
 const productRouter = require("./productRouter");
 const categoryRouter = require("./categoryRouter");
 const whatsappRouter = require("./whatsappRouter");
+const invoiceRouter = require("./invoiceRouter");
 
 
 const router = Router();
@@ -12,5 +13,6 @@ const router = Router();
 router.use("/product", productRouter);
 router.use("/category", categoryRouter);
 router.use("/whatsapp", whatsappRouter);
+router.use("/invoice", invoiceRouter);
 
 module.exports = router;

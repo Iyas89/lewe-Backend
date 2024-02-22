@@ -7,8 +7,24 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-       quantity: {
-            type: DataTypes.INTEGER,
+       customerMail: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        customerName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        customerAddress: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        customerPhone: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        date : {
+            type: DataTypes.DATE,
             allowNull: false
         },
         price: {

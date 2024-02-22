@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const { EMAIL_USER, EMAIL_PASSWORD } = process.env;
 const {invoice} = require("../utils/invoice");
 
-const mailSender = async (invoiceData) => {
+const mailSender = async (invoiceData,orderToCreate) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -14,12 +14,11 @@ const mailSender = async (invoiceData) => {
       },
     });
     const result = await transporter.sendMail({
-      from: `facurimini@gmail.com`,
-      to: `facurimini@gmail.com`,
+      from: EMAIL_USER,
+      to: `aguspv99@gmail.com`,
       subject: "Lewe Invoice",
-      html: invoice(invoiceData),
+      html: invoice(invoiceData,orderToCreate),
     });
-    console.log(result);
     return result;
   } catch (error) {
     return error.message;
