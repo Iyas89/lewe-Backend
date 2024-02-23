@@ -1,6 +1,14 @@
-const invoice = (invoiceData,orderToCreate) => {
-console.log(invoiceData);
-console.log(orderToCreate);
+const invoice = (invoiceData) => {
+
+const order = invoiceData[0].order;
+const articles = invoiceData[0].articles;
+
+const formattedDate = new Date(order.date).toLocaleDateString('es-ES', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric'
+});
+
   const invoiceBody = `</head>
   <body class="body">
    <div dir="ltr" class="es-wrapper-color">
@@ -114,13 +122,13 @@ console.log(orderToCreate);
                     <table cellpadding="0" cellspacing="0" width="100%">
                      <tbody>
                       <tr>
-                       <td align="center" class="esd-block-text es-m-txt-c"><h2>Order&nbsp;<a target="_blank">#65000500</a></h2></td>
+                       <td align="center" class="esd-block-text es-m-txt-c"><h2>Orden&nbsp;<a target="_blank">#${order.id}</a></h2></td>
                       </tr>
                       <tr>
-                       <td align="center" class="esd-block-text es-p5t es-p5b es-p40r es-p40l es-m-p0r es-m-p0l"><p>Apr 17,&nbsp;2021</p></td>
+                       <td align="center" class="esd-block-text es-p5t es-p5b es-p40r es-p40l es-m-p0r es-m-p0l"><strong><p>${formattedDate}</p></strong></td>
                       </tr>
                       <tr>
-                       <td align="center" class="esd-block-text es-p5t es-p15b es-p40r es-p40l es-m-p0r es-m-p0l"><p>This email is to confirm&nbsp;your order. We will send you another email as soon as it ships.</p></td>
+                       <td align="center" class="esd-block-text es-p5t es-p15b es-p40r es-p40l es-m-p0r es-m-p0l"><p>Este correo es para confirmar&nbsp;tu orden.</p></td>
                       </tr>
                       
                      </tbody>
@@ -129,156 +137,83 @@ console.log(orderToCreate);
                  </tbody>
                 </table></td>
               </tr>
-              <tr>
-               <td class="esd-structure es-p10t es-p10b es-p20r es-p20l esdev-adapt-off" align="left">
-                <table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table">
-                 <tbody>
-                  <tr>
-                   <td class="esdev-mso-td" valign="top">
-                    <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                     <tbody>
-                      <tr>
-                       <td width="70" class="es-m-p0r esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                         <tbody>
-                          <tr>
-                           <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank"><img class="adapt-img" src="https://fcppxyi.stripocdn.email/content/guids/CABINET_c67048fd0acf81b47e18129166337c05/images/79021618299486570.png" alt="" style="display: block;" width="70"></a></td>
-                          </tr>
-                         </tbody>
-                        </table></td>
-                      </tr>
-                     </tbody>
-                    </table></td>
-                   <td width="20"></td>
-                   <td class="esdev-mso-td" valign="top">
-                    <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                     <tbody>
-                      <tr>
-                       <td width="265" class="esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                         <tbody>
-                          <tr>
-                           <td align="left" class="esd-block-text"><p><strong>Polo</strong></p></td>
-                          </tr>
-                          <tr>
-                           <td align="left" class="esd-block-text es-p5t"><p>Size: M<br>Color: White</p></td>
-                          </tr>
-                         </tbody>
-                        </table></td>
-                      </tr>
-                     </tbody>
-                    </table></td>
-                   <td width="20"></td>
-                   <td class="esdev-mso-td" valign="top">
-                    <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                     <tbody>
-                      <tr>
-                       <td width="80" align="left" class="esd-container-frame">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                         <tbody>
-                          <tr>
-                           <td align="center" class="esd-block-text"><p>2 pcs</p></td>
-                          </tr>
-                         </tbody>
-                        </table></td>
-                      </tr>
-                     </tbody>
-                    </table></td>
-                   <td width="20"></td>
-                   <td class="esdev-mso-td" valign="top">
-                    <table cellpadding="0" cellspacing="0" class="es-right" align="right">
-                     <tbody>
-                      <tr>
-                       <td width="85" align="left" class="esd-container-frame">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                         <tbody>
-                          <tr>
-                           <td align="right" class="esd-block-text"><p>$20</p></td>
-                          </tr>
-                         </tbody>
-                        </table></td>
-                      </tr>
-                     </tbody>
-                    </table></td>
-                  </tr>
-                 </tbody>
-                </table></td>
-              </tr>
-              <tr>
-               <td class="esd-structure es-p10t es-p10b es-p20r es-p20l esdev-adapt-off" align="left">
-                <table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table">
-                 <tbody>
-                  <tr>
-                   <td class="esdev-mso-td" valign="top">
-                    <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                     <tbody>
-                      <tr>
-                       <td width="70" class="es-m-p0r esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                         <tbody>
-                          <tr>
-                           <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank"><img class="adapt-img" src="https://fcppxyi.stripocdn.email/content/guids/CABINET_c67048fd0acf81b47e18129166337c05/images/43961618299486640.png" alt="" style="display: block;" width="70"></a></td>
-                          </tr>
-                         </tbody>
-                        </table></td>
-                      </tr>
-                     </tbody>
-                    </table></td>
-                   <td width="20"></td>
-                   <td class="esdev-mso-td" valign="top">
-                    <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                     <tbody>
-                      <tr>
-                       <td width="265" class="esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                         <tbody>
-                          <tr>
-                           <td align="left" class="esd-block-text"><p><strong>T-shirt</strong></p></td>
-                          </tr>
-                          <tr>
-                           <td align="left" class="esd-block-text es-p5t"><p>Size: M<br>Color: White</p></td>
-                          </tr>
-                         </tbody>
-                        </table></td>
-                      </tr>
-                     </tbody>
-                    </table></td>
-                   <td width="20"></td>
-                   <td class="esdev-mso-td" valign="top">
-                    <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                     <tbody>
-                      <tr>
-                       <td width="80" align="left" class="esd-container-frame">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                         <tbody>
-                          <tr>
-                           <td align="center" class="esd-block-text"><p>1 pcs</p></td>
-                          </tr>
-                         </tbody>
-                        </table></td>
-                      </tr>
-                     </tbody>
-                    </table></td>
-                   <td width="20"></td>
-                   <td class="esdev-mso-td" valign="top">
-                    <table cellpadding="0" cellspacing="0" class="es-right" align="right">
-                     <tbody>
-                      <tr>
-                       <td width="85" align="left" class="esd-container-frame">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                         <tbody>
-                          <tr>
-                           <td align="right" class="esd-block-text"><p>$20</p></td>
-                          </tr>
-                         </tbody>
-                        </table></td>
-                      </tr>
-                     </tbody>
-                    </table></td>
-                  </tr>
-                 </tbody>
-                </table></td>
-              </tr>
+              ${articles.map((article) => {
+                return `<tr>   
+                <td class="esd-structure es-p10t es-p10b es-p20r es-p20l esdev-adapt-off" align="left">
+                 <table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table">
+                  <tbody>
+                   <tr>
+                    <td class="esdev-mso-td" valign="top">
+                     <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                      <tbody>
+                       <tr>
+                        <td width="70" class="es-m-p0r esd-container-frame" align="center">
+                         <table cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                           <tr>
+                            <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank"><img class="adapt-img" src="${article.image}" alt="" style="display: block;" width="70"></a></td>
+                           </tr>
+                          </tbody>
+                         </table></td>
+                       </tr>
+                      </tbody>
+                     </table></td>
+                    <td width="20"></td>                                                   
+                    <td class="esdev-mso-td" valign="top">
+                     <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                      <tbody>
+                       <tr>
+                        <td width="265" class="esd-container-frame" align="center">
+                         <table cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                           <tr>
+                            <td align="left" class="esd-block-text"><p><strong>${article.name}</strong></p></td>
+                           </tr>
+                           <tr>
+                            <td align="left" class="esd-block-text es-p5t"><p>Talle: ${article.size}</p></td>
+                           </tr>
+                          </tbody>
+                         </table></td>
+                       </tr>
+                      </tbody>
+                     </table></td>
+                    <td width="20"></td>
+                    <td class="esdev-mso-td" valign="top">
+                     <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                      <tbody>
+                       <tr>
+                        <td width="80" align="left" class="esd-container-frame">
+                         <table cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                           <tr>
+                            <td align="center" class="esd-block-text"><p>${article.quantity} Unidad/es</p></td>
+                           </tr>
+                          </tbody>
+                         </table></td>
+                       </tr>
+                      </tbody>
+                     </table></td>
+                    <td width="20"></td>
+                    <td class="esdev-mso-td" valign="top">
+                     <table cellpadding="0" cellspacing="0" class="es-right" align="right">
+                      <tbody>
+                       <tr>
+                        <td width="85" align="left" class="esd-container-frame">
+                         <table cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                           <tr>
+                            <td align="right" class="esd-block-text"><p>$${article.price}</p></td>
+                           </tr>
+                          </tbody>
+                         </table></td>
+                       </tr>
+                      </tbody>
+                     </table></td>
+                   </tr>
+                  </tbody>
+                 </table></td>
+               </tr>`;
+              }).join('')}
               <tr>
                <td class="esd-structure es-p10t es-p20r es-p20l" align="left">
                 <table cellpadding="0" cellspacing="0" width="100%">
@@ -288,7 +223,7 @@ console.log(orderToCreate);
                     <table cellpadding="0" cellspacing="0" width="100%" style="border-top: 2px solid #efefef; border-bottom: 2px solid #efefef;">
                      <tbody>
                       <tr>
-                       <td align="right" class="esd-block-text es-m-txt-r es-p10t es-p20b"><p>Subtotal:&nbsp;<strong>$40.00</strong><br>Envío:&nbsp;<strong>$0.00</strong><br>Total:&nbsp;<strong>$50.00</strong></p></td>
+                       <td align="right" class="esd-block-text es-m-txt-r es-p10t es-p20b"><p>Subtotal:&nbsp;<strong>$${order.price}</strong><br>Envío:&nbsp;<strong>$0.00</strong><br>Total:&nbsp;<strong>$${order.price}</strong></p></td>
                       </tr>
                      </tbody>
                     </table></td>
@@ -306,7 +241,7 @@ console.log(orderToCreate);
                     <table cellpadding="0" cellspacing="0" width="100%">
                      <tbody>
                       <tr>
-                       <td align="left" class="esd-block-text"><p>Email: <strong>sarah_powell@domain.com</strong></p><p>Order number:&nbsp;<strong>#65000500</strong></p><p>Fecha de Compra:&nbsp;<strong>Apr 17, 2021</strong></p><p>Método de Pago:&nbsp;<strong>PayPal</strong></p><p>​</p></td>
+                       <td align="left" class="esd-block-text"><p>Email: <strong>${order.customerMail}</strong></p><p>Teléfono:&nbsp;<strong>${order.customerPhone}</strong></p><p>Fecha de Compra:&nbsp;<strong>${formattedDate}</strong></p><p>​</p></td>
                       </tr>
                      </tbody>
                     </table></td>
@@ -321,7 +256,7 @@ console.log(orderToCreate);
                     <table cellpadding="0" cellspacing="0" width="100%">
                      <tbody>
                       <tr>
-                       <td align="left" class="esd-block-text es-m-txt-l"><p>Dirección de envío:</p><p><strong>Sarah Powell,<br>600 Montgomery St,<br>San Francisco, CA 94111</strong></p></td>
+                       <td align="left" class="esd-block-text es-m-txt-l"><p>Dirección de envío:</p><p><strong>${order.customerAddress}</strong></p></td>
                       </tr>
                      </tbody>
                     </table></td>

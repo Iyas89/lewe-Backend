@@ -2,6 +2,7 @@ const { mailSender } = require("../utils/nodemailer");
 const { Articles } = require("../db");
 const { Order } = require("../db");
 const { OrderArticles } = require("../db");
+const { invoice } = require("../utils/invoice");
 
 const sendInvoice = async (invoiceData) => {
   // Recorre cada artículo vendido en la factura
@@ -59,6 +60,7 @@ const sendInvoice = async (invoiceData) => {
         size: item.size
     });
 });
+invoiceData[0].order.id = newOrder.id;
 
   await mailSender(invoiceData);
   // Envía la factura por correo electrónico
