@@ -33,7 +33,7 @@ fs.readdirSync(modelsDir)
 
 console.log("__dirname:", __dirname);
 
-fs.readdirSync(path.join(__dirname, '/models'))
+fs.readdirSync(path.join(__dirname, '../models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
     modelDefiners.push(require(path.join(modelsDir, file)));
