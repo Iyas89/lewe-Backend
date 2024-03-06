@@ -21,12 +21,18 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
-fs.readdirSync(path.join(__dirname, '/models'))
+// fs.readdirSync(path.join(__dirname, '/models'))
+//   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
+//   .forEach((file) => {
+//     modelDefiners.push(require(path.join(__dirname, '/models', file)));
+//   });
+const modelsDir = path.join(__dirname, 'models'); // Directorio de modelos
+
+fs.readdirSync(modelsDir)
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+    modelDefiners.push(require(path.join(modelsDir, file)));
   });
-
 
 modelDefiners.forEach(model => model(sequelize));
 let entries = Object.entries(sequelize.models);
