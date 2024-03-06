@@ -21,10 +21,14 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
-fs.readdirSync(path.join(__dirname, '/models'))
+console.log("__dirname:", __dirname);
+
+const modelsPath = process.env.NODE_ENV === 'production' ? '/opt/render/project/src/models' : path.join(__dirname, '/models');
+
+fs.readdirSync(modelsPath)
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+    modelDefiners.push(require(path.join(modelsPath, file)));
   });
 
 
