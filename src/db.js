@@ -27,10 +27,14 @@ const modelDefiners = [];
 //   .forEach((file) => {
 //     modelDefiners.push(require(path.join(__dirname, '/models', file)));
 //   });
-fs.readdirSync(path.join(__dirname, '../Models'))
+// Directorio de modelos (ruta relativa desde db.js)
+const modelsDir = path.join(__dirname, './Models');
+
+// Leer archivos del directorio de modelos
+fs.readdirSync(modelsDir)
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '../Models', file)));
+    modelDefiners.push(require(path.join(modelsDir, file)));
   });
 
 modelDefiners.forEach(model => model(sequelize));
