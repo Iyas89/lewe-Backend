@@ -7,6 +7,11 @@ const { invoice } = require("../utils/invoice");
 const sendInvoice = async (invoiceData) => {
   // Recorre cada artículo vendido en la factura
   const data = invoiceData[0];
+  let orderPrice = 0;
+  const articlesPrice = data.articles.map((item) => {
+    orderPrice += item.price * item.quantity;
+  });
+  console.log(orderPrice);
 
   for (const item of data.articles) {
     const articleId = item.id;
@@ -46,7 +51,7 @@ const sendInvoice = async (invoiceData) => {
     customerAddress: orderData.customerAddress,
     customerPhone: orderData.customerPhone,
     date: orderData.date,
-    price: orderData.price,
+    price: orderPrice,
   };
 
   
@@ -61,6 +66,7 @@ const sendInvoice = async (invoiceData) => {
     });
 });
 invoiceData[0].order.id = newOrder.id;
+invoiceData[0].order.price = orderPrice;
 
   await mailSender(invoiceData);
   // Envía la factura por correo electrónico
