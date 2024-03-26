@@ -7,6 +7,7 @@ const invoiceRouter = require("./invoiceRouter");
 const userRouter = require("./userRouter");
 const orderRouter = require("./orderRouter");
 const loginRouter = require("./loginRouter");
+const contactRouter = require("./contactRouter");
 
 
 const router = Router();
@@ -17,8 +18,9 @@ router.use("/product", productRouter);
 router.use("/category", categoryRouter);
 router.use("/whatsapp", whatsappRouter);
 router.use("/invoice", invoiceRouter);
-router.use("/user",userRouter)
-router.use("/order",orderRouter)
-router.use("/login", loginRouter)
+router.use("/user",userRouter);
+router.use("/order",orderRouter);
+router.use("/login", loginRouter);
+router.use("/contact", contactRouter);
 
 module.exports = router;

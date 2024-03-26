@@ -24,4 +24,32 @@ const mailSender = async (invoiceData) => {
     return error.message;
   }
 };
-module.exports = {mailSender};
+
+const contactMail = async (body) => {
+  const { name, email, message } = body;
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: EMAIL_USER,
+        pass: EMAIL_PASSWORD,
+      },
+    });
+    const result = await transporter.sendMail({
+      from: EMAIL_USER,
+      to: `facurimini@gmail.com`,
+      subject: `Contacto Lewe`,
+      html: `
+      <p><strong>Nombre: ${name}</strong></p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Mensaje:</strong> ${message}</p>`
+    });
+    return result;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+module.exports = {mailSender, contactMail};
