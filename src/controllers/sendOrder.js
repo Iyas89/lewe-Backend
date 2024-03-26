@@ -3,7 +3,7 @@ const sendOrder = (phoneNumber, order) => {
   phoneNumber = phoneNumber.replace(/\D/g, "");
   const articlesList = order[0].articles;
   const customerData = order[0].order;
-
+  
   // Codifica el mensaje para que sea seguro para la URL
   const itemsToOrder = articlesList.map((item) => {
     return {

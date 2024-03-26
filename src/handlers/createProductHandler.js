@@ -4,6 +4,7 @@ const createProductHandler = async (request, response) => {
     const {
         name,
         description,
+        descriptionDetail,
         price,
         stockXS,
         stockS,
@@ -20,6 +21,7 @@ const createProductHandler = async (request, response) => {
       const { message, dataNewProduct, listProducts } = await createProduct(
         name,
         description,
+        descriptionDetail,
         price,
         stockXS,
         stockS,

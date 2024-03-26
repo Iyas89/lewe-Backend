@@ -1,10 +1,11 @@
 const {Articles} = require("../db.js");
 
-const createProduct = async (name, description, price, stockXS, stockS, stockM, stockL, stockXL, stockXXL, image, size, sold, CategoryId) => {
+const createProduct = async (name, description,descriptionDetail, price, stockXS, stockS, stockM, stockL, stockXL, stockXXL, image, size, sold, CategoryId) => {
     const totalStock = stockXS + stockS + stockM + stockL + stockXL + stockXXL;
     const newProduct = await Articles.create({
         name,
         description,
+        descriptionDetail,
         price,
         stockXS,
         stockS,
