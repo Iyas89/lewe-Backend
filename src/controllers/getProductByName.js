@@ -9,6 +9,7 @@ const getProductByName = async (name) => {
                 name: {
                 [Op.iLike]: `%${name}%`,
                 },
+                isActive: true,
             },
             });
             if(product === null){
@@ -16,7 +17,15 @@ const getProductByName = async (name) => {
             }
             return product;
         }
-        const allProducts = await Articles.findAll();
+        const allProducts = await Articles.findAll(
+            {
+                where: {
+                    isActive: true,
+                },
+            }
+        
+        );
+
         return allProducts;
 
     } catch (error) {

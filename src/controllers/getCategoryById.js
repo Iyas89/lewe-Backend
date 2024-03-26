@@ -4,7 +4,13 @@ const { Category } = require("../db");
 const getCategoryById = async (id) => {
   try {
     if (id === "indumentaria") {
-      const allProducts = await Articles.findAll();
+      const allProducts = await Articles.findAll(
+        {
+          where: {
+            isActive: true,
+        },
+        }
+      );
       if (allProducts === null) {
         throw new Error("No se encontraron productos en esta categoría");
       }
@@ -21,6 +27,7 @@ const getCategoryById = async (id) => {
       const categoryName = await Category.findByPk(id);
       const categoryProducts = await Articles.findAll({
         where: {
+          isActive: true,
           CategoryId: id,
         },
       });
