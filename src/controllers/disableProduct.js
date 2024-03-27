@@ -5,7 +5,7 @@ const disableProduct = async (id) => {
         const product = await Articles.findByPk(id);
         product.isActive === true ? product.isActive = false : product.isActive = true;
         await product.save();
-        return product;
+        return product.dataValues;
     } catch (error) {
         return error;
     }
