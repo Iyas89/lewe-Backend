@@ -11,29 +11,29 @@ const sendInvoice = async (invoiceData) => {
   const articlesPrice = data.articles.map((item) => {
     orderPrice += item.price * item.quantity;
   });
-  console.log(orderPrice);
 
   for (const item of data.articles) {
     const articleId = item.id;
     const size = item.size;
-
+    const quantitySold = +item.quantity; // Cantidad vendida
+    console.log(quantitySold)
     const article = await Articles.findByPk(articleId);
     if (!article) {
       throw new Error(
         `El artículo con ID ${articleId} no se encontró en la base de datos`
       );
     }
-
+  
     // Verifica si hay suficiente stock disponible para el tamaño seleccionado
     const stockField = `stock${size.toUpperCase()}`;
-    if (article[stockField] > 0) {
-      // Resta 1 al stock del tamaño correspondiente
-      article[stockField] -= 1;
+    if (article[stockField] >= quantitySold) {
+      // Resta la cantidad vendida del stock del tamaño correspondiente
+      article[stockField] -= quantitySold;
       // Aumenta el contador de artículos vendidos
-      article.sold += 1;
-
-      article.stock -= 1;
-
+      article.sold = +article.sold + +quantitySold;
+      // Resta la cantidad vendida del stock general del artículo
+      article.stock -= quantitySold;
+  
       // Guarda los cambios en la base de datos
       await article.save();
     } else {
