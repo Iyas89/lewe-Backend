@@ -1,13 +1,12 @@
 const invoice = (invoiceData) => {
+  const order = invoiceData[0].order;
+  const articles = invoiceData[0].articles;
 
-const order = invoiceData[0].order;
-const articles = invoiceData[0].articles;
-
-const formattedDate = new Date(order.date).toLocaleDateString('es-ES', {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric'
-});
+  const formattedDate = new Date(order.date).toLocaleDateString("es-ES", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 
   const invoiceBody = `</head>
   <body class="body">
@@ -122,7 +121,9 @@ const formattedDate = new Date(order.date).toLocaleDateString('es-ES', {
                     <table cellpadding="0" cellspacing="0" width="100%">
                      <tbody>
                       <tr>
-                       <td align="center" class="esd-block-text es-m-txt-c"><h2>Orden&nbsp;<a target="_blank">#${order.id}</a></h2></td>
+                       <td align="center" class="esd-block-text es-m-txt-c"><h2>Orden&nbsp;<a target="_blank">#${
+                         order.id
+                       }</a></h2></td>
                       </tr>
                       <tr>
                        <td align="center" class="esd-block-text es-p5t es-p5b es-p40r es-p40l es-m-p0r es-m-p0l"><strong><p>${formattedDate}</p></strong></td>
@@ -137,8 +138,92 @@ const formattedDate = new Date(order.date).toLocaleDateString('es-ES', {
                  </tbody>
                 </table></td>
               </tr>
-              ${articles.map((article) => {
-                return `<tr>   
+              ${articles
+                .map((article) => {
+                  console.log(article.CategoryId);
+                  console.log(article);
+                  if (
+                    article.CategoryId ===
+                      "108312e1-bed1-4468-aaed-657307fb2267" ||
+                    article.CategoryId ===
+                      "4567773c-ab96-41aa-b9fa-ffa331fe4d7f" ||
+                    article.CategoryId ===
+                      "d5033fd4-8d56-4e02-b816-78b4f65ee660"
+                  ) {
+                    return `<tr>   
+                <td class="esd-structure es-p10t es-p10b es-p20r es-p20l esdev-adapt-off" align="left">
+                 <table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table">
+                  <tbody>
+                   <tr>
+                    <td class="esdev-mso-td" valign="top">
+                     <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                      <tbody>
+                       <tr>
+                        <td width="70" class="es-m-p0r esd-container-frame" align="center">
+                         <table cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                           <tr>
+                            <td align="center" class="esd-block-image" style="font-size: 0px;"><a target="_blank"><img class="adapt-img" src="${article.image}" alt="" style="display: block;" width="70"></a></td>
+                           </tr>
+                          </tbody>
+                         </table></td>
+                       </tr>
+                      </tbody>
+                     </table></td>
+                    <td width="20"></td>                                                   
+                    <td class="esdev-mso-td" valign="top">
+                     <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                      <tbody>
+                       <tr>
+                        <td width="265" class="esd-container-frame" align="center">
+                         <table cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                           <tr>
+                            <td align="left" class="esd-block-text"><p><strong>${article.name}</strong></p></td>
+                           </tr>
+                          </tbody>
+                         </table></td>
+                       </tr>
+                      </tbody>
+                     </table></td>
+                    <td width="20"></td>
+                    <td class="esdev-mso-td" valign="top">
+                     <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                      <tbody>
+                       <tr>
+                        <td width="80" align="left" class="esd-container-frame">
+                         <table cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                           <tr>
+                            <td align="center" class="esd-block-text"><p>${article.quantity} Unidad/es</p></td>
+                           </tr>
+                          </tbody>
+                         </table></td>
+                       </tr>
+                      </tbody>
+                     </table></td>
+                    <td width="20"></td>
+                    <td class="esdev-mso-td" valign="top">
+                     <table cellpadding="0" cellspacing="0" class="es-right" align="right">
+                      <tbody>
+                       <tr>
+                        <td width="85" align="left" class="esd-container-frame">
+                         <table cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                           <tr>
+                            <td align="right" class="esd-block-text"><p>$${article.price}</p></td>
+                           </tr>
+                          </tbody>
+                         </table></td>
+                       </tr>
+                      </tbody>
+                     </table></td>
+                   </tr>
+                  </tbody>
+                 </table></td>
+               </tr>`;
+                  }
+                  return `<tr>   
                 <td class="esd-structure es-p10t es-p10b es-p20r es-p20l esdev-adapt-off" align="left">
                  <table width="560" cellpadding="0" cellspacing="0" class="esdev-mso-table">
                   <tbody>
@@ -213,7 +298,8 @@ const formattedDate = new Date(order.date).toLocaleDateString('es-ES', {
                   </tbody>
                  </table></td>
                </tr>`;
-              }).join('')}
+                })
+                .join("")}
               <tr>
                <td class="esd-structure es-p10t es-p20r es-p20l" align="left">
                 <table cellpadding="0" cellspacing="0" width="100%">
@@ -223,7 +309,11 @@ const formattedDate = new Date(order.date).toLocaleDateString('es-ES', {
                     <table cellpadding="0" cellspacing="0" width="100%" style="border-top: 2px solid #efefef; border-bottom: 2px solid #efefef;">
                      <tbody>
                       <tr>
-                       <td align="right" class="esd-block-text es-m-txt-r es-p10t es-p20b"><p>Subtotal:&nbsp;<strong>$${order.price}</strong><br>Envío:&nbsp;<strong>$0.00</strong><br>Total:&nbsp;<strong>$${order.price}</strong></p></td>
+                       <td align="right" class="esd-block-text es-m-txt-r es-p10t es-p20b"><p>Subtotal:&nbsp;<strong>$${
+                         order.price
+                       }</strong><br>Envío:&nbsp;<strong>$0.00</strong><br>Total:&nbsp;<strong>$${
+    order.price
+  }</strong></p></td>
                       </tr>
                      </tbody>
                     </table></td>
@@ -241,7 +331,11 @@ const formattedDate = new Date(order.date).toLocaleDateString('es-ES', {
                     <table cellpadding="0" cellspacing="0" width="100%">
                      <tbody>
                       <tr>
-                       <td align="left" class="esd-block-text"><p>Email: <strong>${order.customerMail}</strong></p><p>Teléfono:&nbsp;<strong>${order.customerPhone}</strong></p><p>Fecha de Compra:&nbsp;<strong>${formattedDate}</strong></p><p>​</p></td>
+                       <td align="left" class="esd-block-text"><p>Email: <strong>${
+                         order.customerMail
+                       }</strong></p><p>Teléfono:&nbsp;<strong>${
+    order.customerPhone
+  }</strong></p><p>Fecha de Compra:&nbsp;<strong>${formattedDate}</strong></p><p>​</p></td>
                       </tr>
                      </tbody>
                     </table></td>
@@ -256,7 +350,9 @@ const formattedDate = new Date(order.date).toLocaleDateString('es-ES', {
                     <table cellpadding="0" cellspacing="0" width="100%">
                      <tbody>
                       <tr>
-                       <td align="left" class="esd-block-text es-m-txt-l"><p>Dirección de envío:</p><p><strong>${order.customerAddress}</strong></p></td>
+                       <td align="left" class="esd-block-text es-m-txt-l"><p>Dirección de envío:</p><p><strong>${
+                         order.customerAddress
+                       }</strong></p></td>
                       </tr>
                      </tbody>
                     </table></td>

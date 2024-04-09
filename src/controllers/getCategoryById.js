@@ -16,9 +16,9 @@ const getCategoryById = async (id) => {
       }
       const allProductsFiltered = allProducts.filter(
         (product) =>
-          product.CategoryId !== "f75de8fb-83f7-444a-a6b9-b3f151fae7a2" &&
-          product.CategoryId !== "67726fd5-b41a-4320-ba42-c9e8f484087f" &&
-          product.CategoryId !== "ab178e9d-253f-4fe5-a9a0-59cac1c1cdf7"
+          product.CategoryId !== "108312e1-bed1-4468-aaed-657307fb2267" &&
+          product.CategoryId !== "4567773c-ab96-41aa-b9fa-ffa331fe4d7f" &&
+          product.CategoryId !== "d5033fd4-8d56-4e02-b816-78b4f65ee660"
       );
       return { products: allProductsFiltered, name: "Indumentaria" };
     }
