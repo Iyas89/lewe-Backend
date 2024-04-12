@@ -39,7 +39,7 @@ const contactMail = async (body) => {
     });
     const result = await transporter.sendMail({
       from: EMAIL_USER,
-      to: `facurimini@gmail.com`,
+      to: `aguspv99@gmail.com`,
       subject: `Contacto Lewe`,
       html: `
       <p><strong>Nombre: ${name}</strong></p>
