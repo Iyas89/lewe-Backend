@@ -15,7 +15,7 @@ const mailSender = async (invoiceData) => {
     });
     const result = await transporter.sendMail({
       from: EMAIL_USER,
-      to: `facurimini@gmail.com`,
+      to: `aguspv99@gmail.com`,
       subject: "Lewe Invoice",
       html: invoice(invoiceData),
     });
