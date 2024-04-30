@@ -3,6 +3,7 @@ const { EMAIL_USER, EMAIL_PASSWORD } = process.env;
 const {invoice} = require("../utils/invoice");
 
 const mailSender = async (invoiceData) => {
+  const customerEmail = invoiceData[0].order.customerMail;
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -15,7 +16,7 @@ const mailSender = async (invoiceData) => {
     });
     const result = await transporter.sendMail({
       from: EMAIL_USER,
-      to: `aguspv99@gmail.com`,
+      to: customerEmail,
       subject: "Lewe Invoice",
       html: invoice(invoiceData),
     });
@@ -39,8 +40,8 @@ const contactMail = async (body) => {
     });
     const result = await transporter.sendMail({
       from: EMAIL_USER,
-      to: `aguspv99@gmail.com`,
-      subject: `Contacto Lewe`,
+      to: `lewesportlife@gmail.com`,
+      subject: `Contacto Web: ${name}`,
       html: `
       <p><strong>Nombre: ${name}</strong></p>
       <p><strong>Email:</strong> ${email}</p>
